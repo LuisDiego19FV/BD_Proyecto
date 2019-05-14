@@ -17,3 +17,7 @@ Route::get('/', function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/insertCliente', 'HomeController@insertCliente');
+Route::post('/insertProduct', 'HomeController@insertProduct');
+
+Route::get('/home/{productKey}', 'HomeController@productAttributes')->name('productAttributes');
+Route::post('/insertAttribute', 'HomeController@insertAttribute');

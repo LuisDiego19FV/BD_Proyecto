@@ -4,12 +4,9 @@
 
 <div class="container">
 
-    <div class ="container-column">
-
-        <div class="col-md-8">
             <ul class="nav nav-pills">
-                <li class="nav-item"><a class ="active nav-link" data-toggle="pill" href="#tableView">Table View</a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#insertView">Insert</a></li>
+                <li class="nav-item"><a class ="active nav-link" data-toggle="pill" href="#tableView">Ver Tablas</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#insertView">Insertar Informacion</a></li>
             </ul>
 
             <div class="card">
@@ -48,9 +45,11 @@
                                     </tr>
                                     @foreach ($products as $producto)
                                     <tr>
-                                        <td>{{$producto->productid}}</td>
+                                        
+                                        <td><a href="{{ route('productAttributes', [$producto->productid]) }}" target="_blank">{{$producto->productid}}</td>
                                         <td>{{$producto->marca }}</td>
                                         <td>{{$producto->categoria }}</td>
+                                        
                                     </tr>
                                     @endforeach
                                 </table>
@@ -79,20 +78,63 @@
                     </div>
 
                     <div id="insertView" class="tab-pane fade">
-        				<form method="post" action="/insertCliente">
-        					<input type="text" name="nit" placeholder="NIT">
-        					<input type="text" name="primer_nombre" placeholder="primer_nombre">
-        					<input type="text" name="apellido" placeholder="apellido">
-        					<input type="hidden" name="_token" value="{{ csrf_token() }}">
-        					<input type="submit" name="Sumbit">
-        				</form>
+
+                        <ul class="nav nav-pills flex-column">
+                            <li class="nav-item"><a class="active nav-link" data-toggle="pill" href="#clientInsert">Agregar Cliente</a></li>
+                            <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#productosInsert">Agregar Producto</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+
+                            <div id="clientInsert" class="tab-pane fade-in active">
+                				<form class ="my-form bg-dark"method="post" action="/insertCliente">
+                                    <label class="control-label text-light" for="nit">NIT:</label>
+                					<input type="text" name="nit" placeholder="NIT">
+                                    <br>
+
+                                    <label class="control-label text-light" for="primer_nombre">Primer Nombre:</label>
+                					<input type="text" name="primer_nombre" placeholder="Primer Nombre">
+                                    <br>
+
+                                    <label class="control-label text-light" for="apellido">Apellido:</label>
+                					<input type="text" name="apellido" placeholder="Apellidos">
+                                    <br>
+
+                					<input type="hidden" name="_token" value="{{ csrf_token() }}">
+                					<input type="submit" name="Sumbit">
+                				</form>
+                            </div>
+
+                            <div id="productosInsert" class="tab-pane fade">
+                                <form class ="my-form bg-dark" method="post" action="/insertProduct">
+                                    <label class="control-label text-light" for="marca">Marca:</label>
+                                    <select name="marca" id="marca" class="form-control">
+                                        @foreach($marcas as $marca)
+                                        <option value="{{ $marca->id }}">{{ $marca->nombre }}</option>
+                                        @endforeach
+                                    </select>
+                                    <br>
+
+                                    <label class="control-label text-light" for="categoria">Categoria:</label>
+                                    <select name="categoria" id="categoria" class="form-control">
+                                        @foreach($categorias as $categoria)
+                                        <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+                                        @endforeach
+                                    </select>
+                                    <br>
+
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <input type="submit" name="Sumbit">
+                                </form>
+                            </div>
+
+                        </div>
+
                     </div>
 
 				</div>
 
             </div>
-        </div>
-    </div>
 </div>
 
 
