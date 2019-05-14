@@ -47,8 +47,11 @@ class HomeController extends Controller
     public function insertAttribute(request $request){
         DB::table('public.productos')->insert(['id' => $request->prodID, 'atributo' => $request->atributo, 'valor' => $request->valor]);
         return back();
-
-
-
     }
+
+    public function detalleFactura(request $request){
+        $detalles = DB::table('public.lineas_de_facturas')->where('factura_id', '=', $request->facturaKey)->get();
+        return view('detalleFactura')->with('detalles', $detalles)->with('facturaKey', $request->facturaKey);
+    }
+    
 }

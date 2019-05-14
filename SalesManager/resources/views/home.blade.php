@@ -26,12 +26,16 @@
                                     	<th scope="col">NIT</th>
                                     	<th scope="col">Primer Nombre</th>
                                     	<th scope="col">Apellido</th>
+                                        <th scope="col">Eliminar</th>
                                    	</tr>
                                     @foreach ($origin as $originf)
                                     <tr>
                                         <td>{{$originf->nit}}</td>
                                         <td>{{$originf->primer_nombre }}</td>
                                         <td>{{$originf->apellido }}</td>
+                                        <td>
+                                            <button type="submit" name="Sumbit"><i class= "fas fa-user-minus "style="color: red;"></i></button>
+                                        </td>
                                     </tr>
                                     @endforeach
                 				</table>
@@ -49,7 +53,7 @@
                                         <td><a href="{{ route('productAttributes', [$producto->productid]) }}" target="_blank">{{$producto->productid}}</td>
                                         <td>{{$producto->marca }}</td>
                                         <td>{{$producto->categoria }}</td>
-                                        
+
                                     </tr>
                                     @endforeach
                                 </table>
@@ -65,7 +69,7 @@
                                     </tr>
                                     @foreach ($facturas as $factura)
                                     <tr>
-                                        <td>{{$factura->id}}</td>
+                                        <td><a href="{{ route('detalleFactura', [$factura->id]) }}" target="_blank">{{$factura->id}}</td>
                                         <td>{{$factura->nit }}</td>
                                         <td>{{$factura->lugar }}</td>
                                         <td>{{$factura->tiempo }}</td>

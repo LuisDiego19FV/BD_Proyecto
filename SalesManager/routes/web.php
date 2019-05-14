@@ -19,5 +19,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/insertCliente', 'HomeController@insertCliente');
 Route::post('/insertProduct', 'HomeController@insertProduct');
 
-Route::get('/home/{productKey}', 'HomeController@productAttributes')->name('productAttributes');
+Route::get('/home/producto/{productKey}', 'HomeController@productAttributes')->name('productAttributes');
 Route::post('/insertAttribute', 'HomeController@insertAttribute');
+Route::get('/home/factura/{facturaKey}', 'HomeController@detalleFactura')->name('detalleFactura');
