@@ -1,3 +1,5 @@
+##Diego Alvarez
+##Python generator for databases
 import random
 import string
 from faker import Faker
